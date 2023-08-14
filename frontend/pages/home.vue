@@ -47,6 +47,11 @@
       </li>
     </ul>
   </div>
+
+  <AnimatedList />
+
+
+  <!-- <AnimatedList></AnimatedList> -->
 </template>
 
 <script setup lang="ts">
