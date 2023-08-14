@@ -1,0 +1,58 @@
+// https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown-light.css#L263-L273
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    & a {
+        opacity: 0;
+        margin-left: 4px;
+        transition: opacity color 0.2s ease-in-out;
+        color: rgb(171, 171, 171);
+
+        & svg {
+            width: 18px;
+            height: 18px;
+            // width: max(0.8em, 18px);
+            // height: max(0.8em, 18px);
+            &:hover {
+                color: rgb(139, 108, 239);
+            }
+        }
+    }
+    &:hover a {
+        opacity: 1;
+    }
+}
+
+h1 {
+    margin: 0 0 0.67em;
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: var(--base-text-weight-semibold, 600);
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+h4 {
+    font-size: 1em;
+}
+
+h5 {
+    font-size: 0.875em;
+}
+
+h6 {
+    font-size: 0.85em;
+    color: #57606a;
+}

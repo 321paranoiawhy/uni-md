@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   // Global prefix
   // https://docs.nestjs.com/faq/global-prefix
-  app.setGlobalPrefix('uni-md');
+  app.setGlobalPrefix('api/uni-md');
   // http://localhost:3002/
   await app.listen(3002);
 }
