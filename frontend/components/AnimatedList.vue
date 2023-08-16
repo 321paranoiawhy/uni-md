@@ -2,13 +2,8 @@
   <div>
     <button @click="addItem">Push</button>
     <!-- <button @click="removeItem">Pop</button> -->
-    <transition-group name="list" tag="ul">
-      <li
-        v-for="(item, index) in list"
-        :key="item"
-        class="item"
-        @click="removeItem(index)"
-      >
+    <transition-group :name="props.animation" tag="ul">
+      <li v-for="(item, index) in list" :key="item" class="item" @click="removeItem(index)">
         Item: {{ item }}
       </li>
     </transition-group>
@@ -16,6 +11,25 @@
 </template>
 
 <script setup lang="ts">
+type Animation = {
+  Opacity: 'opacity',
+  Fade: 'fade',
+  Stagger: 'stagger',
+  SlideLeft: 'slide-left',
+  SlideRight: 'slide-right',
+}
+// const enum Animation {
+//   Opacity = 'opacity',
+//   Fade = 'fade',
+//   Stagger = 'stagger',
+//   SlideLeft = 'slide-left',
+//   SlideRight = 'slide-right',
+// };
+
+const props = defineProps<{
+  animation: keyof typeof Animation,
+}>();
+
 const list = ref([1, 2, 3]);
 
 const removeItem = (index: number) => {
