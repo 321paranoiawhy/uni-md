@@ -49,7 +49,8 @@ export default defineNuxtConfig({
 
 ### 配置 element-plus
 
-[element-plus-nuxt](https://github.com/element-plus/element-plus-nuxt)
+- [Element Plus module for Nuxt](https://nuxt.com/modules/element-plus)
+- [element-plus-nuxt](https://github.com/element-plus/element-plus-nuxt)
 
 ```bash
 pnpm install element-plus @element-plus/nuxt -D
@@ -113,6 +114,8 @@ pnpm run build
 yarn build
 ```
 
+`build` 成功后会在根目录下生成 `.output` 文件夹。
+
 Locally preview production build:
 
 ```bash
@@ -124,6 +127,12 @@ pnpm run preview
 
 # yarn
 yarn preview
+```
+
+本地部署打包后的静态文件:
+
+```bash
+node .output/server/index.mjs
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

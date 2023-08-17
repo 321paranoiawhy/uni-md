@@ -2,7 +2,7 @@
   <div>
     <button @click="addItem">Push</button>
     <!-- <button @click="removeItem">Pop</button> -->
-    <transition-group :name="props.animation" tag="ul">
+    <transition-group :name="props.animation" tag="ul" class="animation-list">
       <li v-for="(item, index) in list" :key="item" class="item" @click="removeItem(index)">
         Item: {{ item }}
       </li>
@@ -11,23 +11,14 @@
 </template>
 
 <script setup lang="ts">
-type Animation = {
-  Opacity: 'opacity',
-  Fade: 'fade',
-  Stagger: 'stagger',
-  SlideLeft: 'slide-left',
-  SlideRight: 'slide-right',
-}
-// const enum Animation {
-//   Opacity = 'opacity',
-//   Fade = 'fade',
-//   Stagger = 'stagger',
-//   SlideLeft = 'slide-left',
-//   SlideRight = 'slide-right',
-// };
+
+/**
+ * 支持的动画类型
+ */
+type Animation = 'opacity' | 'fade' | 'stagger' | 'slide-left' | 'slide-right';
 
 const props = defineProps<{
-  animation: keyof typeof Animation,
+  animation: Animation,
 }>();
 
 const list = ref([1, 2, 3]);
@@ -42,7 +33,7 @@ const addItem = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 div {
   text-align: center;
 }
@@ -59,10 +50,6 @@ button {
   cursor: pointer;
 }
 
-ul {
-  padding: 0;
-}
-
 .item {
   width: 150px;
   border: 1px solid gray;
@@ -76,17 +63,34 @@ ul {
 /* 
 Adding animations for list items
 */
-.list-enter-active {
-  /* animation: fade-in 0.5s ease-in-out; */
-  animation: opacity-in-out 0.5s ease-in-out;
+.opacity-enter-active {
+  animation: opacity 0.5s ease-in-out;
 }
 
-.list-leave-active {
-  /* animation: fade-in 0.5s ease-in-out reverse; */
-  animation: opacity-in-out 0.5s ease-in-out reverse;
+.opacity-leave-active {
+  animation: opacity 0.5s ease-in-out reverse;
 }
 
-@keyframes fade-in {
+/* 透明度过渡动画 */
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-enter-active {
+  animation: fade 0.5s ease-in-out;
+}
+
+.fade-leave-active {
+  animation: fade 0.5s ease-in-out reverse;
+}
+
+@keyframes fade {
   0% {
     opacity: 0;
     transform: translateX(30px);
@@ -97,14 +101,33 @@ Adding animations for list items
   }
 }
 
-/* 透明度过渡动画 */
-@keyframes opacity-in-out {
+// stagger
+// https://www.framer.com/motion/stagger/
+// https://vuejs.org/guide/built-ins/transition-group.html#staggering-list-transitions
+.stagger-enter-active {
+  animation: stagger 0.5s ease-in-out;
+}
+
+.stagger-leave-active {
+  animation: stagger 0.5s ease-in-out reverse;
+}
+
+@keyframes stagger {
   0% {
     opacity: 0;
+    transform: scale(0.3) translateZ(0px);
   }
 
   100% {
     opacity: 1;
+    transform: none;
   }
+}
+
+
+/* https://vuejs.org/guide/built-ins/transition-group.html#move-transitions */
+.animation-list {
+  position: relative;
+  padding: 0 !important;
 }
 </style>

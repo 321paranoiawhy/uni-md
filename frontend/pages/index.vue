@@ -9,22 +9,10 @@
 
   <!-- markdown MIME type: text/markdown -->
   <!-- see: https://www.rfc-editor.org/rfc/rfc7763 -->
-  <el-upload
-    class="upload-markdown"
-    ref="upload"
-    drag
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-    accept=".md"
-    :auto-upload="false"
-    :show-file-list="false"
-    :limit="1"
-    v-model:file-list="fileList"
-    :on-exceed="onExceed"
-    :before-upload="beforeUpload"
-    :on-change="onChange"
-    :before-remove="onBeforeRemove"
-    :on-remove="onRemove"
-  >
+  <el-upload class="upload-markdown" ref="upload" drag
+    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15" accept=".md" :auto-upload="false"
+    :show-file-list="false" :limit="1" v-model:file-list="fileList" :on-exceed="onExceed" :before-upload="beforeUpload"
+    :on-change="onChange" :on-remove="onRemove">
     <!-- <el-icon class="el-icon--upload"><upload-filled /></el-icon> -->
     <el-icon class="el-icon--upload"><el-icon-upload-filled /></el-icon>
     <div class="el-upload__text">
@@ -53,7 +41,7 @@
 
   <NuxtLink to="/markdownpreview">Markdown Preview</NuxtLink>
 
-  <AnimatedList />
+  <AnimatedList animation="stagger" />
 
   <!-- <AnimatedList></AnimatedList> -->
 </template>
@@ -120,36 +108,11 @@ const beforeUpload = (rawFile: UploadRawFile) => {
 };
 
 // 上传文件发生变化回调
-const onChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {};
+const onChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => { };
 
-// 删除上传文件回调
-const onBeforeRemove = async (
-  uploadFile: UploadFile,
-  uploadFiles: UploadFiles
-) => {
-  ElMessage.success("Delete successfully.");
-  // ElMessageBox.confirm(
-  //   "Delete current file permanently, continue?",
-  //   "Warning",
-  //   {
-  //     confirmButtonText: "OK",
-  //     cancelButtonText: "Cancel",
-  //     type: "warning",
-  //     icon: markRaw(Delete),
-  //   }
-  // )
-  //   .then(() => {
-  //     ElMessage.success("Delete completed.");
-  //     // return true;
-  //   })
-  //   .catch(() => {
-  //     ElMessage.success("Delete canceled.");
-  //     //   return false;
-  //   });
-};
 
 // 成功删除上传文件回调
-const onRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {};
+const onRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => { };
 </script>
 
 <style scoped lang="scss">
@@ -157,9 +120,11 @@ div.upload-file {
   color: var(--el-text-color-regular);
   text-align: center;
   font-size: var(--el-font-size-base);
+
   & svg {
     margin-right: 8px;
   }
+
   & span.name {
     margin-right: 12px;
     font-size: 12px;
@@ -169,6 +134,7 @@ div.upload-file {
     color: #1a7f37;
     background-color: #dafbe1;
   }
+
   // & span.time {
   // }
   margin-bottom: 16px;
@@ -176,9 +142,11 @@ div.upload-file {
 
 div.upload-tip {
   margin-top: 32px;
+
   & ul li {
     padding: 0.5rem 0;
     color: rgb(47, 73, 94);
+
     & span {
       color: rgba(245, 101, 101, 1);
       background-color: rgba(247, 250, 252, 1);
