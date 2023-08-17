@@ -56,7 +56,7 @@ export default defineNuxtConfig({
 pnpm install element-plus @element-plus/nuxt -D
 ```
 
-## 配置 css 预处理器
+### 配置 css 预处理器
 
 [Preprocessors support](https://nuxt.com/docs/getting-started/styling#preprocessors-support)
 
@@ -64,7 +64,7 @@ pnpm install element-plus @element-plus/nuxt -D
 pnpm install sass -D
 ```
 
-## 配置 Nuxt Icon
+### 配置 Nuxt Icon
 
 - [Nuxt Icon](https://nuxt.com/modules/icon)
 - [icones](https://icones.js.org/)
@@ -92,12 +92,27 @@ pnpm nuxi dev
 
 > 如果未按上述命令执行, 则不会生成类型文件, IDE 会报类型错误。
 
-
 [手动执行类型检查](https://nuxt.com/docs/api/commands/typecheck):
 
 ```bash
 npx nuxi typecheck [--log-level] [rootDir]
 ```
+
+### 配置环境变量
+
+- [.env File](https://nuxt.com/docs/guide/directory-structure/env)
+
+```bash
+npx nuxi dev --dotenv .env.local
+```
+
+### 配置 supabase
+
+```bash
+pnpm install @nuxtjs/supabase @supabase/auth-ui-shared @nuxtbase/auth-ui-vue -D
+```
+
+[配置 GitHub](https://supabase.com/docs/guides/auth/social-login/auth-github)
 
 ## Production
 

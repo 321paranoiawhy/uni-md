@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     "~/assets/themes/default/code.scss",
     "~/assets/themes/default/links.scss",
     "~/assets/themes/default/ordered-list.scss",
-    "~/assets/themes/default/unordered-list.scss",
+    // "~/assets/themes/default/unordered-list.scss",
     "~/assets/themes/default/headings.scss",
   ],
   alias: {
@@ -34,7 +34,15 @@ export default defineNuxtConfig({
     //   },
     // },
   },
-  modules: ["@element-plus/nuxt", "nuxt-icon"],
+  modules: ["@element-plus/nuxt", "nuxt-icon", "@nuxtjs/supabase"],
+  supabase: {
+    // https://supabase.nuxtjs.org/get-started#redirectoptions
+    redirectOptions: {
+      login: "/login",
+      callback: "/",
+      exclude: [],
+    },
+  },
   vite: {
     css: {
       preprocessorOptions: {

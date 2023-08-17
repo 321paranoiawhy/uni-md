@@ -9,10 +9,21 @@
 
   <!-- markdown MIME type: text/markdown -->
   <!-- see: https://www.rfc-editor.org/rfc/rfc7763 -->
-  <el-upload class="upload-markdown" ref="upload" drag
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15" accept=".md" :auto-upload="false"
-    :show-file-list="false" :limit="1" v-model:file-list="fileList" :on-exceed="onExceed" :before-upload="beforeUpload"
-    :on-change="onChange" :on-remove="onRemove">
+  <el-upload
+    class="upload-markdown"
+    ref="upload"
+    drag
+    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+    accept=".md"
+    :auto-upload="false"
+    :show-file-list="false"
+    :limit="1"
+    v-model:file-list="fileList"
+    :on-exceed="onExceed"
+    :before-upload="beforeUpload"
+    :on-change="onChange"
+    :on-remove="onRemove"
+  >
     <!-- <el-icon class="el-icon--upload"><upload-filled /></el-icon> -->
     <el-icon class="el-icon--upload"><el-icon-upload-filled /></el-icon>
     <div class="el-upload__text">
@@ -108,11 +119,10 @@ const beforeUpload = (rawFile: UploadRawFile) => {
 };
 
 // 上传文件发生变化回调
-const onChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => { };
-
+const onChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {};
 
 // 成功删除上传文件回调
-const onRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => { };
+const onRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {};
 </script>
 
 <style scoped lang="scss">

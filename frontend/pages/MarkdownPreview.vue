@@ -55,6 +55,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import url(../assets/themes/default/unordered-list.scss);
 .markdown-body {
   max-width: 1280px;
   margin: 0 auto;
