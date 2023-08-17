@@ -1,7 +1,7 @@
 # https://v2.nuxt.com/deployments/github-pages/#github-actions
 name: frontend-deploy
 
-# define the trigger 
+# define the trigger
 on: [push, pull_request]
 
 jobs:
@@ -20,16 +20,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       # Downloads, configures and caches Node.js
       - name: Setup node env
         uses: actions/setup-node@v2.1.4
         with:
           node-version: ${{ matrix.node }}
+          cache: "pnpm"
 
       # Install all dependencies needed to build our documentation
       - name: Install dependencies
         working-directory: ${{env.working-directory}}
-        run: pnpm
+        run: pnpm install
 
       # The generate command is used to invoke Nuxt static site generation
       - name: Generate
