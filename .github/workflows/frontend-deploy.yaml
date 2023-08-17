@@ -42,10 +42,6 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: pnpm run generate
 
-      # - name: Build
-      #   working-directory: ${{env.working-directory}}
-      #   run: pnpm run build
-
       # Pushes the files to a branch called "gh-pages" that will be used as deployment branch
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
