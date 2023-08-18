@@ -1,20 +1,19 @@
 <!-- App.vue -->
 <template>
-  <Auth
+  <div>login page</div>
+  <!-- <Auth
     :supabaseClient="supabaseClient"
     :appearance="{
       theme: ThemeSupa,
     }"
     :providers="['google', 'github', 'twitter']"
-    \
-  />
+  /> -->
 </template>
 
 <script setup lang="ts">
 // Import predefined theme
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Auth } from "@nuxtbase/auth-ui-vue";
-// import process from "process";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseClient = useSupabaseClient();
@@ -42,6 +41,7 @@ const signout = async () => {
 //     navigateTo("/");
 //   }
 // });
+
 // console.log(process.env.SUPABASE_URL);
 // console.log(process.env.SUPABASE_KEY);
 

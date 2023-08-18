@@ -40,7 +40,7 @@ jobs:
       # The generate command is used to invoke Nuxt static site generation
       - name: Generate
         working-directory: ${{env.working-directory}}
-        run: pnpm run generate
+        run: pnpm run generate --dotenv .env.local
 
       # Pushes the files to a branch called "gh-pages" that will be used as deployment branch
       - name: Deploy

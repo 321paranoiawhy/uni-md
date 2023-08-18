@@ -40,6 +40,7 @@
 <script setup lang="ts">
 onMounted(() => {
   console.log("onMounted");
+
   document
     .querySelectorAll("h1, h2, h3, h4, h5, h6")
     .forEach((heading, index, arr) => {
@@ -54,7 +55,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import url(../assets/themes/default/unordered-list.scss);
 .markdown-body {
   max-width: 1280px;

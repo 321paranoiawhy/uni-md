@@ -1,60 +1,60 @@
 <template>
-  <div class="upload-file" v-if="fileList && fileList.length">
-    <Icon name="bi:markdown" color="#606266" size="18" />
-    <!-- {{ fileList?.[0].raw?.name }} -->
-    <span class="name">{{ fileList[0].name }}</span>
-    <!-- <span>{{ fileList[0].uid }}</span> -->
-    <span class="time">{{ new Date(fileList![0].uid!) }}</span>
-  </div>
-
-  <!-- markdown MIME type: text/markdown -->
-  <!-- see: https://www.rfc-editor.org/rfc/rfc7763 -->
-  <el-upload
-    class="upload-markdown"
-    ref="upload"
-    drag
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-    accept=".md"
-    :auto-upload="false"
-    :show-file-list="false"
-    :limit="1"
-    v-model:file-list="fileList"
-    :on-exceed="onExceed"
-    :before-upload="beforeUpload"
-    :on-change="onChange"
-    :on-remove="onRemove"
-  >
-    <!-- <el-icon class="el-icon--upload"><upload-filled /></el-icon> -->
-    <el-icon class="el-icon--upload"><el-icon-upload-filled /></el-icon>
-    <div class="el-upload__text">
-      Drop file here or <em>click to upload</em>
+  <div class="root">
+    <div class="upload-file" v-if="fileList && fileList.length">
+      <Icon name="bi:markdown" color="#606266" size="18" />
+      <!-- {{ fileList?.[0].raw?.name }} -->
+      <span class="name">{{ fileList[0].name }}</span>
+      <!-- <span>{{ fileList[0].uid }}</span> -->
+      <span class="time">{{ new Date(fileList![0].uid!) }}</span>
     </div>
-    <!-- <template #tip>
+
+    <!-- markdown MIME type: text/markdown -->
+    <!-- see: https://www.rfc-editor.org/rfc/rfc7763 -->
+    <el-upload
+      class="upload-markdown"
+      ref="upload"
+      drag
+      action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+      accept=".md"
+      :auto-upload="false"
+      :show-file-list="false"
+      :limit="1"
+      v-model:file-list="fileList"
+      :on-exceed="onExceed"
+      :before-upload="beforeUpload"
+      :on-change="onChange"
+      :on-remove="onRemove"
+    >
+      <!-- <el-icon class="el-icon--upload"><upload-filled /></el-icon> -->
+      <el-icon class="el-icon--upload"><el-icon-upload-filled /></el-icon>
+      <div class="el-upload__text">
+        Drop file here or <em>click to upload</em>
+      </div>
+      <!-- <template #tip>
       <div center class="el-upload__tip">a single markdown file</div>
     </template> -->
-    <template #file> </template>
-  </el-upload>
+      <template #file> </template>
+    </el-upload>
 
-  <div class="upload-tip">
-    <div>Tips:</div>
-    <ul>
-      <li>Only support markdown file with the extension <span>.md</span>.</li>
-      <li>
-        At most one markdown file can be uploaded. and file size should be less
-        than <span>400kb</span>.
-      </li>
-      <li>
-        Uploaded markdown file can be deleted and then another new markdown file
-        can be added.
-      </li>
-    </ul>
+    <div class="upload-tip">
+      <div>Tips:</div>
+      <ul>
+        <li>Only support markdown file with the extension <span>.md</span>.</li>
+        <li>
+          At most one markdown file can be uploaded. and file size should be
+          less than <span>400kb</span>.
+        </li>
+        <li>
+          Uploaded markdown file can be deleted and then another new markdown
+          file can be added.
+        </li>
+      </ul>
+    </div>
+
+    <NuxtLink to="/markdown-preview">Markdown Preview</NuxtLink>
+
+    <AnimatedList animation="stagger" />
   </div>
-
-  <NuxtLink to="/markdownpreview">Markdown Preview</NuxtLink>
-
-  <AnimatedList animation="stagger" />
-
-  <!-- <AnimatedList></AnimatedList> -->
 </template>
 
 <script setup lang="ts">

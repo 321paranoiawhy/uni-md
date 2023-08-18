@@ -2,9 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
+  // ssr: false,
+  // layout:true,
   app: {
     // https://nuxt.com/docs/api/configuration/nuxt-config#baseurl
-    baseURL: "/uni-md",
+    baseURL: process.env.BASE_URL || "/uni-md",
+    // https://nuxt.com/docs/getting-started/transitions#page-transitions
+    pageTransition: { name: "page", mode: "out-in" },
   },
   css: [
     // "~/assets/themes/default/css-variable.scss",
@@ -20,7 +24,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: { public: { baseURL: "http://localhost:3002/api/uni-md" } },
   // https://nuxt.com/docs/api/configuration/nuxt-config#devserver
-  devServer: { host: "0.0.0.0", port: 3001 },
+  devServer: { host: "0.0.0.0", port: +(process.env.BASE_URL || 3001) },
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
   // https://nuxt.com/docs/guide/concepts/typescript
   typescript: { strict: true, typeCheck: true },
@@ -35,14 +39,14 @@ export default defineNuxtConfig({
     // },
   },
   modules: ["@element-plus/nuxt", "nuxt-icon", "@nuxtjs/supabase"],
-  supabase: {
-    // https://supabase.nuxtjs.org/get-started#redirectoptions
-    redirectOptions: {
-      login: "/login",
-      callback: "/",
-      exclude: [],
-    },
-  },
+  // supabase: {
+  //   // https://supabase.nuxtjs.org/get-started#redirectoptions
+  //   redirectOptions: {
+  //     login: "/login",
+  //     callback: "/",
+  //     exclude: [],
+  //   },
+  // },
   vite: {
     css: {
       preprocessorOptions: {
