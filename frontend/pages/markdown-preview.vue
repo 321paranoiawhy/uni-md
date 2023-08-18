@@ -57,9 +57,11 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @import url(../assets/themes/default/unordered-list.scss);
+
 .markdown-body {
   max-width: 1280px;
-  margin: 0 auto;
+  padding: 32px;
+  // margin: 0 auto;
   scroll-behavior: smooth;
 }
 </style>

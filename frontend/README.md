@@ -33,6 +33,12 @@ pnpm run dev
 yarn dev
 ```
 
+[清理文件](https://nuxt.com/docs/api/commands/cleanup):
+
+```bash
+npx nuxi clean|cleanup
+```
+
 可在 `nuxt.config.ts` 中配置端口:
 
 ```ts

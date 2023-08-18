@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     baseURL: process.env.BASE_URL || "/uni-md",
     // https://nuxt.com/docs/getting-started/transitions#page-transitions
     pageTransition: { name: "page", mode: "out-in" },
+    head: { script: [{ src: "https://accounts.google.com/gsi/client" }] },
   },
   css: [
     // "~/assets/themes/default/css-variable.scss",
@@ -22,7 +23,13 @@ export default defineNuxtConfig({
   alias: {
     // "@": "~/assets",
   },
-  runtimeConfig: { public: { baseURL: "http://localhost:3002/api/uni-md" } },
+  runtimeConfig: {
+    public: {
+      // baseURL: "http://localhost:3002/api/uni-md",
+      GOOGLE_CLIENT_ID:
+        "764537731222-68ntdabncu81o51ck4rsggs5eu8jvode.apps.googleusercontent.com",
+    },
+  },
   // https://nuxt.com/docs/api/configuration/nuxt-config#devserver
   devServer: { host: "0.0.0.0", port: +(process.env.BASE_URL || 3001) },
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
@@ -38,7 +45,19 @@ export default defineNuxtConfig({
     //   },
     // },
   },
-  modules: ["@element-plus/nuxt", "nuxt-icon", "@nuxtjs/supabase"],
+  // modules: ["@element-plus/nuxt", "nuxt-icon", "@nuxtjs/supabase"],
+  modules: ["@element-plus/nuxt", "nuxt-icon", "@pinia/nuxt"],
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false, // https://nuxt.com/docs/guide/directory-structure/components#component-names
+    },
+  ],
+  // scripts: [
+  //   {
+  //     src: "https://accounts.google.com/gsi/client",
+  //   },
+  // ],
   // supabase: {
   //   // https://supabase.nuxtjs.org/get-started#redirectoptions
   //   redirectOptions: {

@@ -42,7 +42,7 @@
         <li>Only support markdown file with the extension <span>.md</span>.</li>
         <li>
           At most one markdown file can be uploaded. and file size should be
-          less than <span>400kb</span>.
+          less than <span>512kb</span>.
         </li>
         <li>
           Uploaded markdown file can be deleted and then another new markdown
@@ -52,6 +52,8 @@
     </div>
 
     <NuxtLink to="/markdown-preview">Markdown Preview</NuxtLink>
+
+    <SignInWithGoogle></SignInWithGoogle>
 
     <AnimatedList animation="stagger" />
   </div>
@@ -148,6 +150,10 @@ div.upload-file {
   // & span.time {
   // }
   margin-bottom: 16px;
+}
+
+div.upload-markdown {
+  margin: 32px;
 }
 
 div.upload-tip {

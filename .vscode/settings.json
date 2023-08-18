@@ -1,0 +1,15 @@
+{
+    // 保存自动格式化代码
+    "editor.formatOnSave": true,
+    // 配置 Tab 空格数
+    "editor.tabSize": 2,
+    // 字体大小
+    "editor.fontSize": 14,
+    // 可以为不同语言或文档单独配置
+    // "[typescript]": {
+    //   "editor.formatOnSave": false
+    // },
+    "[markdown]": {
+      "editor.formatOnSave": true
+    }
+  }
