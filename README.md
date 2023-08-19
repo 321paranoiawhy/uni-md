@@ -1,10 +1,17 @@
 # uni-md
 
-Universal markdown rendered in web, support all markdown formats, such ad GFM, GLFM and so on...
+Universal markdown rendered in web, support all markdown formats, such ad [GFM](https://github.github.com/gfm/), [GLFM](https://docs.gitlab.com/ee/user/markdown.html) and so on...
 
 原则:
 
 - 单一职责: 仅一个页面, 仅展示单一的 `markdown` 文件, 仅支持纯文本和网络媒体资源(如网络图片、音频、视频等), 不支持本地图片、本地音频、本地视频等。
+
+
+待支持的不同`markdown` 格式的笔记软件:
+
+- [Obsidian](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax)
+- [Typora](https://support.typora.io/Markdown-Reference/)
+- [语雀](https://www.yuque.com/yuque/gpvawt/lnobo9)
 
 ## frontend
 
