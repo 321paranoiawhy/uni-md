@@ -32,18 +32,22 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      // baseURL: "http://localhost:3002/api/uni-md",
+      // 后端接口地址
+      baseURL: "http://localhost:3002/api/uni-md",
       GOOGLE_CLIENT_ID:
         "764537731222-68ntdabncu81o51ck4rsggs5eu8jvode.apps.googleusercontent.com",
       GITHUB_CLIENT_ID: "a2819d21e1fd587fb6d8",
       GITHUB_CLIENT_SECRET: "38796c08518172a42160ca575721a3853413bf89",
       // GITHUB_REDIRECT_URI: "https://321paranoiawhy.github.io/uni-md/",
       // 对应 Authorization callback URL (后端)
-      GITHUB_REDIRECT_URI: "http://localhost:3002/uni-md/api/auth/github/",
+      GITHUB_REDIRECT_URI:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3002/uni-md/api/auth/github/"
+          : "https://43.139.143.207/uni-md/api/auth/github/",
     },
   },
   // https://nuxt.com/docs/api/configuration/nuxt-config#devserver
-  devServer: { host: "0.0.0.0", port: +(process.env.BASE_URL || 3001) },
+  devServer: { host: "0.0.0.0", port: +(process.env.PORT || 3001) },
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
   // https://nuxt.com/docs/guide/concepts/typescript
   typescript: { strict: true, typeCheck: true },

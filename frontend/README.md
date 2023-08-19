@@ -135,7 +135,11 @@ pnpm run build
 yarn build
 ```
 
-`build` 成功后会在根目录下生成 `.output` 文件夹。
+`build` 成功后会在根目录下生成 `.output` 文件夹, 可使用以下命令本地查看:
+
+```bash
+node .output/server/index.mjs
+```
 
 Locally preview production build:
 
@@ -149,11 +153,3 @@ pnpm run preview
 # yarn
 yarn preview
 ```
-
-本地部署打包后的静态文件:
-
-```bash
-node .output/server/index.mjs
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
