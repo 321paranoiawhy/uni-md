@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <slot/>
+    <slot />
 
     <div class="expand"></div>
 
@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .layout {
   display: flex;
   flex-direction: column;
@@ -42,8 +42,8 @@
     & a {
       color: rgb(245, 101, 101);
     }
-    & div:first-child{
-        margin-bottom: 0.375rem;
+    & div:first-child {
+      margin-bottom: 0.375rem;
     }
   }
 }

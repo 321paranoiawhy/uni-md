@@ -1,15 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  // localhost:3001
-  // @Get()
-  // getHello(): string {
-  //   return this.appService.getHello();
-  // }
+  // localhost:3002
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
 
   // [route params]
   // umi-md/1

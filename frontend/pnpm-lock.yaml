@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@types/google.accounts':
+    specifier: ^0.0.8
+    version: 0.0.8
+
 devDependencies:
   '@element-plus/nuxt':
     specifier: ^1.0.5
@@ -1480,6 +1485,10 @@ packages:
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: true
+
+  /@types/google.accounts@0.0.8:
+    resolution: {integrity: sha512-2PsbBf8fWr0PyC5jzl4Gxc0WzcHVnoPC+0Kv8XutaH0/gaPmW3Vrq2Mdv6WnZOh4K7OSrzvjNkCKEL8EHHx5Aw==}
+    dev: false
 
   /@types/http-proxy@1.17.11:
     resolution: {integrity: sha512-HC8G7c1WmaF2ekqpnFq626xd3Zz0uvaqFmBJNRZCGEZCXkvSdJoNFn/8Ygbd9fKNQj8UzLdCETaI0UWPAjK7IA==}

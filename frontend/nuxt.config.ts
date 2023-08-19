@@ -9,7 +9,14 @@ export default defineNuxtConfig({
     baseURL: process.env.BASE_URL || "/uni-md",
     // https://nuxt.com/docs/getting-started/transitions#page-transitions
     pageTransition: { name: "page", mode: "out-in" },
-    head: { script: [{ src: "https://accounts.google.com/gsi/client" }] },
+    head: {
+      script: [
+        {
+          // https://developers.google.com/identity/gsi/web/guides/migration#libraries_and_configuration
+          src: "https://accounts.google.com/gsi/client",
+        },
+      ],
+    },
   },
   css: [
     // "~/assets/themes/default/css-variable.scss",
@@ -28,6 +35,11 @@ export default defineNuxtConfig({
       // baseURL: "http://localhost:3002/api/uni-md",
       GOOGLE_CLIENT_ID:
         "764537731222-68ntdabncu81o51ck4rsggs5eu8jvode.apps.googleusercontent.com",
+      GITHUB_CLIENT_ID: "a2819d21e1fd587fb6d8",
+      GITHUB_CLIENT_SECRET: "38796c08518172a42160ca575721a3853413bf89",
+      // GITHUB_REDIRECT_URI: "https://321paranoiawhy.github.io/uni-md/",
+      // 对应 Authorization callback URL (后端)
+      GITHUB_REDIRECT_URI: "http://localhost:3002/uni-md/api/auth/github/",
     },
   },
   // https://nuxt.com/docs/api/configuration/nuxt-config#devserver

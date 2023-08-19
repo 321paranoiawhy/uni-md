@@ -45,6 +45,18 @@ pnpm run lint
 pnpm run format
 ```
 
+## 使用 `Docker`
+
+```bash
+cd backend
+
+# 打包镜像
+docker build -t uni-md .
+
+# 运行到容器
+docker run -p 3002:3002 uni-md
+```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
@@ -97,3 +109,38 @@ nest g service file server
 > CREATE src/server/file/file.service.ts (88 bytes)
 > CREATE src/server/file/file.service.spec.ts (446 bytes)
 > UPDATE src/server/file/file.module.ts (241 bytes)
+
+## 配置 JWT
+
+- [@nestjs/jwt](https://github.com/nestjs/jwt)
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
+
+```bash
+pnpm install --save @nestjs/jwt
+```
+
+使用 `curl` 发起请求:
+
+```bash
+curl -X POST http://localhost:3002/uni-md/api/auth/login -d '{"username": "john", "password": "changeme"}' -H "Content-Type: application/json"
+```
+
+使用 `Invoke-WebRequest` 在 `Powershell` 中发起登录请求:
+
+```powershell
+Invoke-WebRequest `
+    -Uri "http://localhost:3002/uni-md/api/auth/login" `
+    -Headers @{"Content-Type" = "application/json"} `
+    -Body '{"username": "john", "password": "changeme"}' `
+    -Method Post
+```
+
+解析 `JWT`:
+
+```powershell
+# 注意替换为实际的 JWT
+Invoke-WebRequest `
+    -Uri "http://localhost:3002/uni-md/api/auth/profile" `
+    -Headers @{"Authorization" = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUb2RvOiB1c2VyIGlkIiwidXNlcm5hbWUiOiJqb2huIiwicGFzc3dvcmQiOiJjaGFuZ2VtZSIsImlhdCI6MTY5MjQ0NDQ1MSwiZXhwIjoxNjkzMDQ5MjUxfQ.M60AVeiELrGMuR0VTabORs0u5LW14jHDKaY7r2meU20"} `
+    -Method Get
+```

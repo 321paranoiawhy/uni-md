@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { FileService } from './file.service';
 import { CreateFileDTO } from './file.dto';
 import { MarkdownFile } from './file.interface';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 interface FileResponse<T = unknown> {
   code: number;
@@ -9,6 +10,8 @@ interface FileResponse<T = unknown> {
   message: string;
 }
 
+// https://docs.nestjs.com/openapi/security#basic-authentication
+@ApiBearerAuth()
 @Controller('file')
 export class FileController {
   constructor(private readonly fileService: FileService) {}

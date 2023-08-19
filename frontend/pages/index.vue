@@ -53,7 +53,7 @@
 
     <NuxtLink to="/markdown-preview">Markdown Preview</NuxtLink>
 
-    <SignInWithGoogle></SignInWithGoogle>
+    <!-- <SignInWithGoogle></SignInWithGoogle> -->
 
     <AnimatedList animation="stagger" />
   </div>
@@ -70,6 +70,24 @@ import type {
   UploadUserFile,
 } from "element-plus";
 import { Delete } from "@element-plus/icons-vue";
+
+definePageMeta({
+  // Route Validation
+  // https://nuxt.com/docs/getting-started/routing#route-validation
+  validate: async (route) => {
+    console.log(route.query);
+    const queryLength = Object.keys(route.query).length;
+    // 没有查询参数
+    if (queryLength === 0) {
+      return true;
+    } else if (queryLength === 1 && route.query.cookie) {
+      // 仅有 cookie 一个查询参数
+      return true;
+    } else {
+      return false;
+    }
+  },
+});
 
 const upload = ref<UploadInstance>();
 const fileList = ref<UploadUserFile[]>();
