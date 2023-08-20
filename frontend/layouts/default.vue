@@ -4,7 +4,9 @@
 
     <div class="expand"></div>
 
-    <footer>
+    <Footer></Footer>
+
+    <!-- <footer>
       <div>Copyright © 2023 321paranoiawhy . All Rights Reserved.</div>
       <div>
         Powered by
@@ -23,7 +25,7 @@
           >GitHub Pages</a
         >
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 

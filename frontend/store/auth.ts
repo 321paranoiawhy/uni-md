@@ -1,45 +1,49 @@
 import { defineStore } from "pinia";
 
-// interface UserPayloadInterface {
-//   username: string;
-//   password: string;
-// }
-
 type LogInMethod = "google" | "github" | "email" | null;
 
-type LogInPayload = {};
+import { AuthResponse } from "types";
+
+// export interface User {
+//   username: string | null;
+//   userId: string | null;
+//   token: string | null;
+//   email: string | null;
+// }
+
+// export interface AuthState {
+//   user: AuthUser | null;
+// }
 
 export const useAuthStore = defineStore("auth", {
-  state: () => ({
-    authenticated: false, // 是否已登录
-    loginMethod: null,
-    // loading: false,
-  }),
+  state: (): AuthResponse => {
+    const { username, userId, token, email, store, clear } = useAuthCookie();
+
+    return {
+      username: username.value, // 是否已登录
+      userId: userId.value,
+      token: token.value,
+      email: email.value,
+    };
+  },
   actions: {
-    async authenticateUser({}: LogInPayload) {
-      // useFetch from nuxt 3
-      // const { data, pending }: any = await useFetch(
-      //   "https://dummyjson.com/auth/login",
-      //   {
-      //     method: "post",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: {
-      //       username,
-      //       password,
-      //     },
-      //   }
-      // );
-      // this.loading = pending;
-      // if (data.value) {
-      //   const token = useCookie("token"); // useCookie new hook in nuxt 3
-      //   token.value = data?.value?.token; // set token to cookie
-      //   this.authenticated = true; // set authenticated  state value to true
-      // }
+    login(data: AuthResponse) {
+      const { store } = useAuthCookie();
+      store(data.username, data.userId, data.token, data.email);
+      // this.username = data.username;
+      // this.userId = data.userId;
+      // this.token = data.token;
+      // this.email = data.email;
     },
-    logUserOut() {
-      const token = useCookie("token"); // useCookie new hook in nuxt 3
-      this.authenticated = false; // set authenticated  state value to false
-      token.value = null; // clear the token cookie
+    /**
+     * 退出登录
+     */
+    logout() {
+      const { clear } = useAuthCookie();
+      this.username = null;
+      this.userId = null;
+      this.token = null;
+      this.token = null;
     },
   },
 });

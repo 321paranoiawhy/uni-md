@@ -75,19 +75,40 @@ definePageMeta({
   // Route Validation
   // https://nuxt.com/docs/getting-started/routing#route-validation
   validate: async (route) => {
-    console.log(route.query);
+    console.log("validate query", route.query);
     const queryLength = Object.keys(route.query).length;
+    console.log("queryLength", queryLength);
     // 没有查询参数
     if (queryLength === 0) {
+      console.log("登录后进入了首页");
       return true;
     } else if (queryLength === 1 && route.query.cookie) {
       // 仅有 cookie 一个查询参数
       return true;
     } else {
+      // 返回 (跳转) 404 页面
       return false;
     }
   },
 });
+
+const route = useRoute();
+const router = useRouter();
+
+// setTimeout(() => {
+//   navigateTo("/?cookie=111111", { redirectCode: 301, replace: true });
+// }, 3000);
+
+watch(
+  () => route,
+  () => {
+    console.log("index query", route.query);
+    if (route.query.cookie) {
+      // navigateTo("/");
+      router.replace({ path: "/", query: {} });
+    }
+  }
+);
 
 const upload = ref<UploadInstance>();
 const fileList = ref<UploadUserFile[]>();
