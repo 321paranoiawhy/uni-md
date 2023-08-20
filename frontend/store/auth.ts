@@ -1,19 +1,6 @@
 import { defineStore } from "pinia";
 
-type LogInMethod = "google" | "github" | "email" | null;
-
 import { AuthResponse } from "types";
-
-// export interface User {
-//   username: string | null;
-//   userId: string | null;
-//   token: string | null;
-//   email: string | null;
-// }
-
-// export interface AuthState {
-//   user: AuthUser | null;
-// }
 
 export const useAuthStore = defineStore("auth", {
   state: (): AuthResponse => {
