@@ -12,6 +12,7 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.5",
     "@nuxt/devtools": "latest",
+    "@nuxtjs/i18n": "8.0.0-rc.3",
     "@pinia/nuxt": "^0.4.11",
     "@types/node": "^18.17.3",
     "element-plus": "^2.3.9",

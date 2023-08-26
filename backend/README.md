@@ -1,6 +1,4 @@
-# Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# uni-md backend
 
 ## Installation
 
@@ -55,6 +53,23 @@ docker run -p 3002:3002 uni-md
 - [auth](/backend/docs/auth.md)
 - [cURL](/backend/docs/curl.md)
 - [Nest](/backend/docs/nest.md)
+
+## comression
+
+下载依赖:
+
+```bash
+pnpm i --save compression
+pnpm i --save-dev @types/compression
+```
+
+`main.ts`:
+
+```ts
+import * as compression from 'compression';
+
+app.use(compression({ encodings: ['gzip', 'deflate'] }));
+```
 
 ## License
 

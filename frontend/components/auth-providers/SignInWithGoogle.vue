@@ -9,9 +9,9 @@
 /// <reference types='google.accounts' />
 
 import { useAuthStore } from "../../store/auth";
-import { AuthResponse, UnifiedResponse } from "../../types/index";
+import { AuthResponse, UnifiedResponse } from "../../types/api";
 
-const runtimeConfig = useRuntimeConfig();
+const config = useRuntimeConfig();
 
 const googleSignInButton = ref<HTMLDivElement | null>();
 
@@ -44,7 +44,7 @@ onMounted(() => {
 
   // IdConfiguration
   google.accounts.id.initialize({
-    client_id: runtimeConfig.public.GOOGLE_CLIENT_ID,
+    client_id: config.public.GOOGLE_CLIENT_ID,
     callback: onResponse,
     context: "signin",
   });

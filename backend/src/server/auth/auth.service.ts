@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
-import { GitHubUser, GithubConfig, GithubPayload } from './auth.interface';
+import {
+  AuthData,
+  GitHubUser,
+  GithubConfig,
+  GithubPayload,
+} from './auth.interface';
 import { JwtService } from '@nestjs/jwt';
 
 import { OAuth2Client } from 'google-auth-library';
@@ -94,21 +99,28 @@ export class AuthService {
    *
    * https://developers.google.com/identity/gsi/web/reference/js-reference#credential
    */
-  async authWithGoogle(credential: string): Promise<string> {
+  async authWithGoogle(credential: string): Promise<AuthData> {
     const ticket = await this.googleAuthClient.verifyIdToken({
       idToken: credential,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
 
-    console.log(`google credential payload 解析结果: ${ticket.getPayload()}`);
+    console.log('google credential payload 解析结果:', ticket.getPayload());
 
     const userData = {
       name: ticket.getPayload()?.name,
       email: ticket.getPayload()?.email,
       image: ticket.getPayload()?.picture,
     };
-    const jwt = await this.jwtService.signAsync(userData);
+    const token = await this.jwtService.signAsync(userData);
 
-    return jwt;
+    console.log('token', token);
+
+    return {
+      username: ticket.getPayload()?.name,
+      userId: ticket.getPayload()?.sub,
+      email: ticket.getPayload()?.email,
+      token: token,
+    };
   }
 }

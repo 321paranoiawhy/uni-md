@@ -9,6 +9,8 @@ import {
   Redirect,
   // UseGuards,
   Request,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import {
@@ -19,6 +21,13 @@ import {
 } from '@nestjs/swagger';
 // import { AuthGuard } from './auth.guard';
 import { Public } from './decorators/public_decorators';
+import { UnifiedResponse } from 'types';
+import { AuthData } from './auth.interface';
+import { FileInterceptor } from '@nestjs/platform-express';
+
+// import fs from 'fs';
+import { existsSync, mkdirSync, writeFile } from 'fs';
+// import path from 'node:path';
 
 @ApiBearerAuth()
 @ApiTags('auth')
@@ -34,7 +43,7 @@ export class AuthController {
 
   // @UseGuards(AuthGuard)
   // 此为对外可用的公开接口
-  @Public()
+  // @Public()
   @Get('profile')
   getProfile(@Request() req: any) {
     return true;
@@ -42,6 +51,7 @@ export class AuthController {
   }
 
   // /auth/github?code=<CODE>
+  @Public()
   @Get('github')
   @Redirect('http://localhost:3001/uni-md/login', 301)
   // @Redirect()
@@ -95,10 +105,46 @@ export class AuthController {
    *
    * @param credential
    */
+  @Public()
   @Post('/google')
-  async signInWithGoogle(@Body('credential') credential: string): Promise<any> {
-    const jwt = await this.authService.authWithGoogle(credential);
+  async signInWithGoogle(
+    @Body() body: any,
+  ): Promise<UnifiedResponse<AuthData>> {
+    console.log('credential', body.credential);
+    const data: AuthData = await this.authService.authWithGoogle(
+      body.credential,
+    );
 
-    return { code: 200, data: { token: jwt }, message: 'success' };
+    return { code: 200, data: data, message: 'success' };
   }
+
+  // @Public()
+  // @Post('upload')
+  // @UseInterceptors(FileInterceptor('file'))
+  // uploadFile(@UploadedFile() file: Express.Multer.File) {
+  //   console.log(file, file.size);
+
+  //   const destinationFolder = 'public/upload/';
+
+  //   // const filePath = `public/upload`;
+
+  //   // writeFile('newfile.txt', 'Learn Node FS module', function (err) {
+  //   //   if (err) throw err;
+  //   //   console.log('File is created successfully.');
+  //   // });
+
+  //   if (!existsSync(destinationFolder)) {
+  //     mkdirSync(destinationFolder, { recursive: true });
+  //     console.log('create folder', destinationFolder);
+  //   }
+
+  //   writeFile(
+  //     destinationFolder + `${file.originalname}-${new Date().getTime()}`,
+  //     file.buffer,
+  //     'utf-8',
+  //     (error) => {
+  //       console.log(error);
+  //     },
+  //   );
+  // }
 }

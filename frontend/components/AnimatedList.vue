@@ -3,7 +3,12 @@
     <button @click="addItem">Push</button>
     <!-- <button @click="removeItem">Pop</button> -->
     <transition-group :name="props.animation" tag="ul" class="animation-list">
-      <li v-for="(item, index) in list" :key="item" class="item" @click="removeItem(index)">
+      <li
+        v-for="(item, index) in list"
+        :key="item"
+        class="item"
+        @click="removeItem(index)"
+      >
         Item: {{ item }}
       </li>
     </transition-group>
@@ -11,14 +16,13 @@
 </template>
 
 <script setup lang="ts">
-
 /**
  * 支持的动画类型
  */
-type Animation = 'opacity' | 'fade' | 'stagger' | 'slide-left' | 'slide-right';
+type Animation = "opacity" | "fade" | "stagger" | "slide-left" | "slide-right";
 
 const props = defineProps<{
-  animation: Animation,
+  animation: Animation;
 }>();
 
 const list = ref([1, 2, 3]);
@@ -104,30 +108,45 @@ Adding animations for list items
 // stagger
 // https://www.framer.com/motion/stagger/
 // https://vuejs.org/guide/built-ins/transition-group.html#staggering-list-transitions
-.stagger-enter-active {
-  animation: stagger 0.5s ease-in-out;
-}
+// .stagger-enter-active {
+//   animation: stagger 0.5s ease-in-out;
+// }
 
-.stagger-leave-active {
-  animation: stagger 0.5s ease-in-out reverse;
-}
+// .stagger-leave-active {
+//   animation: stagger 0.5s ease-in-out reverse;
+// }
 
-@keyframes stagger {
-  0% {
-    opacity: 0;
-    transform: scale(0.3) translateZ(0px);
-  }
+// @keyframes stagger {
+//   0% {
+//     opacity: 0;
+//     transform: scale(0.3) translateZ(0px);
+//   }
 
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
+//   100% {
+//     opacity: 1;
+//     transform: none;
+//   }
+// }
 
 /* https://vuejs.org/guide/built-ins/transition-group.html#move-transitions */
 .animation-list {
   position: relative;
   padding: 0 !important;
+}
+
+.stagger-move,
+.stagger-enter-active,
+.stagger-leave-active {
+  // transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.25s ease-in-out;
+}
+.stagger-enter-from,
+.stagger-leave-to {
+  opacity: 0;
+  // transform: translateX(-2rem);
+  transform: scale(0);
+}
+.stagger-leave-active {
+  position: absolute;
 }
 </style>

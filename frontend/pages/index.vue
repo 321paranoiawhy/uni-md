@@ -14,7 +14,7 @@
       class="upload-markdown"
       ref="upload"
       drag
-      action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+      action="http://localhost:3002/uni-md/api/file/upload"
       accept=".md"
       :auto-upload="false"
       :show-file-list="false"
@@ -24,6 +24,9 @@
       :before-upload="beforeUpload"
       :on-change="onChange"
       :on-remove="onRemove"
+      :on-progress="onProgress"
+      :on-success="onSuccess"
+      :on-error="onError"
     >
       <!-- <el-icon class="el-icon--upload"><upload-filled /></el-icon> -->
       <el-icon class="el-icon--upload"><el-icon-upload-filled /></el-icon>
@@ -68,8 +71,8 @@ import type {
   UploadFile,
   UploadFiles,
   UploadUserFile,
+  UploadProgressEvent,
 } from "element-plus";
-import { Delete } from "@element-plus/icons-vue";
 
 definePageMeta({
   // Route Validation
@@ -160,10 +163,42 @@ const beforeUpload = (rawFile: UploadRawFile) => {
 };
 
 // 上传文件发生变化回调
-const onChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {};
+const onChange = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
+  console.log(uploadFile, uploadFiles);
+  // 限制上传文件大小
+  if (uploadFile?.size && uploadFile.size >= 512 * 1024) {
+    console.log("size", uploadFile.size);
+  } else {
+    upload.value?.submit();
+  }
+};
 
 // 成功删除上传文件回调
 const onRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {};
+
+const onProgress = (
+  evt: UploadProgressEvent,
+  uploadFile: UploadFile,
+  uploadFiles: UploadFiles
+) => {
+  console.log(evt.percent);
+};
+
+const onSuccess = (
+  response: any,
+  uploadFile: UploadFile,
+  uploadFiles: UploadFiles
+) => {
+  console.log("upload file success", response);
+};
+
+const onError = (
+  error: Error,
+  uploadFile: UploadFile,
+  uploadFiles: UploadFiles
+) => {
+  console.log("upload file error", error);
+};
 </script>
 
 <style scoped lang="scss">

@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { LoggerMiddleware } from './middleware/logger';
 import { AuthGuard } from './server/auth/auth.guard';
 import { JwtService } from '@nestjs/jwt';
+import * as compression from 'compression';
 
 async function bootstrap() {
   // https://docs.nestjs.com/security/cors
@@ -16,6 +17,10 @@ async function bootstrap() {
 
   // Logger 中间件
   app.use(new LoggerMiddleware().use);
+
+  // 文件压缩
+  // https://docs.nestjs.com/techniques/compression
+  app.use(compression({ encodings: ['gzip', 'deflate'] }));
 
   // 全局路由守卫
   app.useGlobalGuards(new AuthGuard(new JwtService(), new Reflector()));

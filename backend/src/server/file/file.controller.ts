@@ -1,8 +1,19 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FileService } from './file.service';
 import { CreateFileDTO } from './file.dto';
 import { MarkdownFile } from './file.interface';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { Public } from '../auth/decorators/public_decorators';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { existsSync, mkdirSync, writeFile } from 'fs';
 
 interface FileResponse<T = unknown> {
   code: number;
@@ -56,5 +67,35 @@ export class FileController {
       code: 200,
       message: 'Success',
     };
+  }
+
+  @Public()
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file, file.size);
+
+    const destinationFolder = 'public/upload/';
+
+    // const filePath = `public/upload`;
+
+    // writeFile('newfile.txt', 'Learn Node FS module', function (err) {
+    //   if (err) throw err;
+    //   console.log('File is created successfully.');
+    // });
+
+    if (!existsSync(destinationFolder)) {
+      mkdirSync(destinationFolder, { recursive: true });
+      console.log('create folder', destinationFolder);
+    }
+
+    writeFile(
+      destinationFolder + `${file.originalname}-${new Date().getTime()}`,
+      file.buffer,
+      'utf-8',
+      (error) => {
+        console.log(error);
+      },
+    );
   }
 }

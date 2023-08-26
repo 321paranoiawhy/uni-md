@@ -33,17 +33,18 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       // 后端接口地址
-      baseURL: "http://localhost:3002/api/uni-md",
+      baseURL: process.env.API_BASE_URL || "http://localhost:3002/api/uni-md",
       GOOGLE_CLIENT_ID:
+        process.env.GOOGLE_CLIENT_ID ||
         "764537731222-68ntdabncu81o51ck4rsggs5eu8jvode.apps.googleusercontent.com",
-      GITHUB_CLIENT_ID: "a2819d21e1fd587fb6d8",
-      GITHUB_CLIENT_SECRET: "38796c08518172a42160ca575721a3853413bf89",
-      // GITHUB_REDIRECT_URI: "https://321paranoiawhy.github.io/uni-md/",
+      GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || "a2819d21e1fd587fb6d8",
+      GITHUB_CLIENT_SECRET:
+        process.env.GITHUB_CLIENT_SECRET ||
+        "38796c08518172a42160ca575721a3853413bf89",
       // 对应 Authorization callback URL (后端)
       GITHUB_REDIRECT_URI:
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3002/uni-md/api/auth/github/"
-          : "https://43.139.143.207/uni-md/api/auth/github/",
+        process.env.GITHUB_REDIRECT_URI ||
+        "http://localhost:3002/uni-md/api/auth/github/",
     },
   },
   // https://nuxt.com/docs/api/configuration/nuxt-config#devserver
@@ -62,18 +63,18 @@ export default defineNuxtConfig({
     // },
   },
   // modules: ["@element-plus/nuxt", "nuxt-icon", "@nuxtjs/supabase"],
-  modules: ["@element-plus/nuxt", "nuxt-icon", "@pinia/nuxt"],
+  modules: ["@element-plus/nuxt", "nuxt-icon", "@pinia/nuxt", "@nuxtjs/i18n"],
+  i18n: {
+    vueI18n: "./i18n/i18n.config.ts", // if you are using custom path, default
+    // locales: ['en', 'zh'], // used in URL path prefix
+    // defaultLocale: 'en', // default locale of your project for Nuxt pages and routings
+  },
   components: [
     {
       path: "~/components",
       pathPrefix: false, // https://nuxt.com/docs/guide/directory-structure/components#component-names
     },
   ],
-  // scripts: [
-  //   {
-  //     src: "https://accounts.google.com/gsi/client",
-  //   },
-  // ],
   // supabase: {
   //   // https://supabase.nuxtjs.org/get-started#redirectoptions
   //   redirectOptions: {

@@ -1,4 +1,4 @@
-import { CookieType } from "types/index";
+import { CookieType } from "types/api";
 
 export const useAuthCookie = (
   { authUsername, authUseId, authToken, authEmail } = {
@@ -13,6 +13,13 @@ export const useAuthCookie = (
   const token = useCookie<CookieType>(authToken);
   const email = useCookie<CookieType>(authEmail);
 
+  /**
+   * 存储新用户信息
+   * @param newUsername
+   * @param newUserId
+   * @param newToken
+   * @param newEmail
+   */
   const store = (
     newUsername: CookieType,
     newUserId: CookieType,
@@ -25,6 +32,9 @@ export const useAuthCookie = (
     email.value = newEmail;
   };
 
+  /**
+   * 清除用户信息
+   */
   const clear = () => {
     username.value = null;
     userId.value = null;

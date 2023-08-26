@@ -1,19 +1,33 @@
 <template>
   <div>
-    <a :href="url">Sign In With GitHub</a>
+    <a :href="url"> <Icon name="uil:github" /> Sign in with GitHub</a>
   </div>
 </template>
 
 <script setup lang="ts">
-const runtimeConfig = useRuntimeConfig();
-console.log(runtimeConfig);
-// console.log(runtimeConfig.public.GITHUB_CLIENT_ID);
-// console.log(runtimeConfig.public.GITHUB_CLIENT_SECRET);
-// console.log(runtimeConfig.public.GITHUB_REDIRECT_URI);
+const config = useRuntimeConfig();
+console.log(config);
 
 // scope
 // https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps
-const url = `https://github.com/login/oauth/authorize?scope=user&client_id=${runtimeConfig.public.GITHUB_CLIENT_ID}&redirect_uri=${runtimeConfig.public.GITHUB_REDIRECT_URI}`;
+const url = `https://github.com/login/oauth/authorize?scope=user&client_id=${config.public.GITHUB_CLIENT_ID}&redirect_uri=${config.public.GITHUB_REDIRECT_URI}`;
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 250px;
+  height: 40px;
+  border-radius: 9999px;
+  color: rgb(15, 20, 25);
+  border: 1px solid rgb(207, 217, 222);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  & svg {
+    margin-right: 4px;
+  }
+}
+</style>

@@ -40,3 +40,10 @@ export interface IUser extends Document {
   email: string;
   avatar_url: string;
 }
+
+export interface AuthData {
+  readonly username: string | undefined;
+  readonly userId: string | undefined;
+  readonly token: string | undefined;
+  readonly email: string | undefined;
+}

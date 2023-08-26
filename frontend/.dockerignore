@@ -2,4 +2,7 @@ node_modules
 .output
 .nuxt
 .git
+.github
+.vscode
 docs
+README.md

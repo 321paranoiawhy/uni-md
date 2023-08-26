@@ -1,36 +1,33 @@
 import { defineStore } from "pinia";
 
-import { AuthResponse } from "types";
+import { AuthResponse } from "../types/api";
 
 export const useAuthStore = defineStore("auth", {
-  state: (): AuthResponse => {
+  state: (): Partial<AuthResponse> => {
     const { username, userId, token, email, store, clear } = useAuthCookie();
 
     return {
-      username: username.value, // 是否已登录
+      username: username.value,
       userId: userId.value,
       token: token.value,
       email: email.value,
     };
   },
   actions: {
+    /**
+     * 登录
+     * @param data 后端返回的用户登录信息
+     */
     login(data: AuthResponse) {
       const { store } = useAuthCookie();
       store(data.username, data.userId, data.token, data.email);
-      // this.username = data.username;
-      // this.userId = data.userId;
-      // this.token = data.token;
-      // this.email = data.email;
     },
     /**
      * 退出登录
      */
     logout() {
       const { clear } = useAuthCookie();
-      this.username = null;
-      this.userId = null;
-      this.token = null;
-      this.token = null;
+      clear();
     },
   },
 });
