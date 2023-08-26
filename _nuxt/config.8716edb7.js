@@ -1,0 +1,1 @@
+import{av as p,aw as a,a2 as i,aj as o}from"./entry.240cd651.js";const s=p({nuxtIcon:{size:"24px",class:"icon",aliases:{}}}),f={},e=a(s,f);function c(){const n=o();return n._appConfig||(n._appConfig=i(e)),n._appConfig}export{c as u};
