@@ -8,10 +8,27 @@ export const useAuthCookie = (
     authEmail: process.env.UNI_MD_EMAIL || "uni_md_email",
   }
 ) => {
-  const username = useCookie<CookieType>(authUsername);
-  const userId = useCookie<CookieType>(authUseId);
-  const token = useCookie<CookieType>(authToken);
-  const email = useCookie<CookieType>(authEmail);
+  // https://ithelp.ithome.com.tw/articles/10304667
+
+  // const maxAge = 60 * 60 * 24 * 7;
+  // const expires = Math.floor(Date.now() / 1000) + maxAge;
+
+  const currentDate = new Date();
+  // 设置 cookie 7 天后过期
+  const dueDate = new Date().setDate(currentDate.getDate() + 7);
+
+  const username = useCookie<CookieType>(authUsername, {
+    expires: new Date(dueDate),
+  });
+  const userId = useCookie<CookieType>(authUseId, {
+    expires: new Date(dueDate),
+  });
+  const token = useCookie<CookieType>(authToken, {
+    expires: new Date(dueDate),
+  });
+  const email = useCookie<CookieType>(authEmail, {
+    expires: new Date(dueDate),
+  });
 
   /**
    * 存储新用户信息

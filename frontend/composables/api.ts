@@ -1,5 +1,5 @@
 import { useRequest } from "../utils/request";
-import { Login } from "../types/api";
+import { Login, UnifiedResponse } from "../types/api";
 
 /**
  * 使用用户名和密码登录
@@ -7,7 +7,7 @@ import { Login } from "../types/api";
  * @returns
  */
 export const login = (data: Login) => {
-  return useRequest("/login");
+  return useRequest<UnifiedResponse<string>>("/auth/login", { method: "POST" });
 };
 
 // login({ type: "username", username: "username", password: "password" });

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
-  // ssr: false,
+  ssr: false,
   // layout:true,
   app: {
     // https://nuxt.com/docs/api/configuration/nuxt-config#baseurl
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       // 后端接口地址
-      baseURL: process.env.API_BASE_URL || "http://localhost:3002/api/uni-md",
+      baseURL: process.env.API_BASE_URL || "http://localhost:3002/uni-md/api",
       GOOGLE_CLIENT_ID:
         process.env.GOOGLE_CLIENT_ID ||
         "764537731222-68ntdabncu81o51ck4rsggs5eu8jvode.apps.googleusercontent.com",
@@ -68,6 +68,10 @@ export default defineNuxtConfig({
     vueI18n: "./i18n/i18n.config.ts", // if you are using custom path, default
     // locales: ['en', 'zh'], // used in URL path prefix
     // defaultLocale: 'en', // default locale of your project for Nuxt pages and routings
+    // detectBrowserLanguage: {
+    //   useCookie: true,
+    //   cookieKey: "uni-md-i18n",
+    // },
   },
   components: [
     {

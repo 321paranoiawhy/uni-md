@@ -24,7 +24,7 @@ export default defineNuxtRouteMiddleware(
     // TODO [Vue warn]: Hydration node mismatch:
     if (auth.token && from.path === "/login" && to.path === "/login") {
       // return navigateTo("/");
-      // return navigateTo("/", { replace: true, redirectCode: 301 });
+      return navigateTo("/", { replace: true, redirectCode: 301 });
     }
   }
 );

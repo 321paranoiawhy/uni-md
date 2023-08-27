@@ -69,6 +69,7 @@ export class FileController {
     };
   }
 
+  // TODO 去除 @Public
   @Public()
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))

@@ -9,7 +9,7 @@ export const useRequest = <T>(
   const config = useRuntimeConfig();
 
   const defaults: UseFetchOptions<T> = {
-    baseURL: config.public.baseURL ?? "http://localhost:3002/api/uni-md",
+    baseURL: config.public.baseURL ?? "http://localhost:3002/uni-md/api",
 
     // cache request
     key: url,
@@ -51,8 +51,17 @@ export const useRequest = <T>(
     },
   };
 
+  // const getOptions = {...options,...{ method: "GET" }};
+  // const postOptions = {...options,...{ method: "POST" }};
+  // const putOptions = {...options,...{ method: "PUT" }};
+  // const deleteOptions = {...options,...{ method: "DELETE" }};
+
   // for nice deep defaults, please use unjs/defu
   const params = defu(options, defaults);
+
+  // return {
+  //   get: useFetch(url, defu(getOptions, defaults)),
+  // };
 
   return useFetch(url, params);
 };

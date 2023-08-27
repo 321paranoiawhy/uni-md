@@ -18,7 +18,7 @@ export const useAuthStore = defineStore("auth", {
      * 登录
      * @param data 后端返回的用户登录信息
      */
-    login(data: AuthResponse) {
+    login(data: Partial<AuthResponse>) {
       const { store } = useAuthCookie();
       store(data.username, data.userId, data.token, data.email);
     },

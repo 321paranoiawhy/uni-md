@@ -9,8 +9,6 @@ import {
   Redirect,
   // UseGuards,
   Request,
-  UploadedFile,
-  UseInterceptors,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import {
@@ -21,13 +19,8 @@ import {
 } from '@nestjs/swagger';
 // import { AuthGuard } from './auth.guard';
 import { Public } from './decorators/public_decorators';
-import { UnifiedResponse } from 'types';
+import { Login, UnifiedResponse } from 'types';
 import { AuthData } from './auth.interface';
-import { FileInterceptor } from '@nestjs/platform-express';
-
-// import fs from 'fs';
-import { existsSync, mkdirSync, writeFile } from 'fs';
-// import path from 'node:path';
 
 @ApiBearerAuth()
 @ApiTags('auth')
@@ -35,10 +28,16 @@ import { existsSync, mkdirSync, writeFile } from 'fs';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  login(@Body() body: Login): UnifiedResponse<string> {
+    // return this.authService.login(body);
+    return {
+      code: 200,
+      message: 'Success',
+      data: this.authService.login(body),
+    };
   }
 
   // @UseGuards(AuthGuard)
@@ -47,7 +46,7 @@ export class AuthController {
   @Get('profile')
   getProfile(@Request() req: any) {
     return true;
-    return req.user;
+    return req;
   }
 
   // /auth/github?code=<CODE>
@@ -117,34 +116,4 @@ export class AuthController {
 
     return { code: 200, data: data, message: 'success' };
   }
-
-  // @Public()
-  // @Post('upload')
-  // @UseInterceptors(FileInterceptor('file'))
-  // uploadFile(@UploadedFile() file: Express.Multer.File) {
-  //   console.log(file, file.size);
-
-  //   const destinationFolder = 'public/upload/';
-
-  //   // const filePath = `public/upload`;
-
-  //   // writeFile('newfile.txt', 'Learn Node FS module', function (err) {
-  //   //   if (err) throw err;
-  //   //   console.log('File is created successfully.');
-  //   // });
-
-  //   if (!existsSync(destinationFolder)) {
-  //     mkdirSync(destinationFolder, { recursive: true });
-  //     console.log('create folder', destinationFolder);
-  //   }
-
-  //   writeFile(
-  //     destinationFolder + `${file.originalname}-${new Date().getTime()}`,
-  //     file.buffer,
-  //     'utf-8',
-  //     (error) => {
-  //       console.log(error);
-  //     },
-  //   );
-  // }
 }

@@ -10,6 +10,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 
 import { OAuth2Client } from 'google-auth-library';
+import { Login } from 'types';
 
 @Injectable()
 export class AuthService {
@@ -75,21 +76,29 @@ export class AuthService {
     }
   }
 
-  async signIn(username: string, password: string) {
+  login(data: Login) {
     // const user = await this.usersService.findOne(username);
     // if (user?.password !== password) {
     //   throw new UnauthorizedException();
     // }
-    const payload = {
-      sub: 'Todo: user id',
-      username: username,
-      password: password,
-    };
-    const access_token = await this.jwtService.signAsync(payload);
-    console.log(access_token);
-    return {
-      access_token: access_token,
-    };
+    const payload: any = { sub: 'TODO sub' };
+    payload.password = data.password;
+
+    if (data.type === 'username') {
+      payload.username = data.username;
+    } else if (data.type === 'email') {
+      payload.email = data.email;
+    } else if (data.type === 'phone') {
+      payload.phone = data.phone;
+    }
+    // const payload = {
+    //   sub: 'Todo: user id',
+    //   username: username,
+    //   password: password,
+    // };
+    const access_token = this.jwtService.sign(payload);
+    console.log('access_token', access_token);
+    return access_token;
   }
 
   /**
