@@ -8,7 +8,7 @@
 
     <el-tabs
       v-model="activeLoginType"
-      class="demo-tabs"
+      class="login-tabs"
       @tab-click="handleClick"
     >
       <el-tab-pane
@@ -173,6 +173,10 @@ const checkResponse = () => {};
       }
     }
   }
+}
+
+.login-tabs {
+  user-select: none;
 }
 
 :deep .el-input__wrapper {
