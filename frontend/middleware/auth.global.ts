@@ -14,17 +14,19 @@ export default defineNuxtRouteMiddleware(
 
     const auth = useAuthStore();
 
+    // https://dev.to/rafaelmagalhaes/authentication-in-nuxt-3-375o
     if (!auth.token && to.path !== "/login") {
+      // https://nuxt.com/docs/api/utils/abort-navigation
+      abortNavigation();
       return navigateTo("/login");
-      // return navigateTo("/login", { replace: false, redirectCode: 302 });
     }
-    // console.log(from, to);
 
     // 已登录的状态下, 直接进入 login 会重定向到首页
     // TODO [Vue warn]: Hydration node mismatch:
-    if (auth.token && from.path === "/login" && to.path === "/login") {
-      // return navigateTo("/");
-      return navigateTo("/", { replace: true, redirectCode: 301 });
+    if (auth.token && to.path === "/login") {
+      abortNavigation();
+      return navigateTo("/");
+      // return navigateTo("/", { replace: true, redirectCode: 301 });
     }
   }
 );
