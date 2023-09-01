@@ -179,15 +179,15 @@ const checkResponse = () => {};
   user-select: none;
 }
 
-:deep .el-input__wrapper {
+:deep(.el-input__wrapper) {
   border-radius: 80px;
 }
-:deep .el-input:nth-last-child(3) {
+:deep(.el-input:nth-last-child(3)) {
   margin-top: 12px;
   margin-bottom: 12px;
 }
 
-:deep .el-input__inner::placeholder {
+:deep(.el-input__inner::placeholder) {
   color: rgb(75, 85, 99);
 }
 </style>
