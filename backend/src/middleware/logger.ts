@@ -7,13 +7,13 @@ export class LoggerMiddleware implements NestMiddleware {
     const code = res.statusCode; // 响应状态码
     next();
     // 组装日志信息
-    const logFormat = ` >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    const logResult = ` >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         Time: ${new Date()}
         Request original url: ${req.originalUrl}
         Method: ${req.method}
         IP: ${req.ip}
         Status code: ${code}
-        Paramaters: ${JSON.stringify(req.params)}
+        Parameters: ${JSON.stringify(req.params)}
         Query: ${JSON.stringify(req.query)}
         Body: ${JSON.stringify(
           req.body,
@@ -22,11 +22,11 @@ export class LoggerMiddleware implements NestMiddleware {
 
     // 根据状态码，进行日志类型区分
     if (code >= 500) {
-      console.error(logFormat);
+      console.error(logResult);
     } else if (code >= 400) {
-      console.warn(logFormat);
+      console.warn(logResult);
     } else {
-      console.log(logFormat);
+      console.log(logResult);
     }
   }
 }

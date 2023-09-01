@@ -65,6 +65,7 @@ pnpm run start:dev
 - Mongodb
 - 文件 Gzip 压缩
 - Swagger 文档
+- Healthcheck
 - [更多](/backend/README.md)
 
 服务端链接: `http://localhost:3002/uni-md/api`

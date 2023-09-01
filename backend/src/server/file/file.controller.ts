@@ -10,7 +10,7 @@ import {
 import { FileService } from './file.service';
 import { CreateFileDTO } from './file.dto';
 import { MarkdownFile } from './file.interface';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Public } from '../auth/decorators/public_decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { existsSync, mkdirSync, writeFile } from 'fs';
@@ -21,6 +21,7 @@ interface FileResponse<T = unknown> {
   message: string;
 }
 
+@ApiTags('file')
 // https://docs.nestjs.com/openapi/security#basic-authentication
 @ApiBearerAuth()
 @Controller('file')

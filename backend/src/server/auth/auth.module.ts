@@ -3,8 +3,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { MongooseModule } from '@nestjs/mongoose';
-import { userSchema } from './user.schema';
+// import { MongooseModule } from '@nestjs/mongoose';
 import { OAuth2Client } from 'google-auth-library';
 
 @Module({
@@ -14,7 +13,7 @@ import { OAuth2Client } from 'google-auth-library';
       secret: process.env.JWT_SECRET || 'jwt-secret',
       signOptions: { expiresIn: '7d' },
     }),
-    MongooseModule.forFeature([{ name: 'Files', schema: userSchema }]),
+    // MongooseModule.forFeature([{ name: 'Token', schema: UserSchema }]),
   ],
   controllers: [AuthController],
   providers: [AuthService, ConfigService, OAuth2Client],

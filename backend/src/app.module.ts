@@ -10,6 +10,8 @@ import configuration from './config/configuration';
 
 import { FileModule } from './server/file/file.module';
 import { AuthModule } from './server/auth/auth.module';
+import { UsersModule } from './server/users/users.module';
+import { HealthModule } from './server/health/health.module';
 
 @Module({
   imports: [
@@ -17,8 +19,9 @@ import { AuthModule } from './server/auth/auth.module';
     // ❌ MongooseModule.forRoot('mongodb://localhost:27017/test'),
     // 数据库地址 mongodb://127.0.0.1:27017
     // 数据库名称 test
+
     MongooseModule.forRoot(
-      process.env.MONGO_DATEBASE_URL || 'mongodb://127.0.0.1:27017/test',
+      process.env.MONGO_DATABASE_URL || 'mongodb://127.0.0.1:27017/uni-md',
     ),
     // HttpModule,
     // ConfigModule,
@@ -36,6 +39,8 @@ import { AuthModule } from './server/auth/auth.module';
 
     FileModule,
     AuthModule,
+    UsersModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

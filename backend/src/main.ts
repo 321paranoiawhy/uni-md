@@ -5,6 +5,7 @@ import { LoggerMiddleware } from './middleware/logger';
 import { AuthGuard } from './server/auth/auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import * as compression from 'compression';
+import { HttpResponse } from './interceptors/http_response';
 
 async function bootstrap() {
   // https://docs.nestjs.com/security/cors
@@ -25,6 +26,9 @@ async function bootstrap() {
   // 全局路由守卫
   app.useGlobalGuards(new AuthGuard(new JwtService(), new Reflector()));
 
+  // 全局响应拦截器
+  app.useGlobalInterceptors(new HttpResponse());
+
   // swagger
   const config = new DocumentBuilder()
     .setTitle('uni-md')
@@ -42,4 +46,5 @@ async function bootstrap() {
 
   console.log(`Nest Application is running on: ${await app.getUrl()}`);
 }
+
 bootstrap();

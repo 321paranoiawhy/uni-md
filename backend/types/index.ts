@@ -8,9 +8,9 @@ export interface UnifiedResponse<T> {
 }
 
 /**
- * 登录方式
+ * 普通登录
  */
-export type LoginType = 'username' | 'phone' | 'email';
+export type TNormalLogin = 'username' | 'phone' | 'email';
 
 // export type Login =
 //   | ({ type: "username" } & LoginWithUsername)
@@ -18,7 +18,7 @@ export type LoginType = 'username' | 'phone' | 'email';
 //   | ({ type: "email" } & LoginWithEmail);
 
 export type LoginUnion = {
-  [K in LoginType]: { type: K; password: string } & Record<K, string>;
+  [K in TNormalLogin]: { type: K; password: string } & Record<K, string>;
 };
 
 export type Login = LoginUnion[keyof LoginUnion];
@@ -26,3 +26,24 @@ export type Login = LoginUnion[keyof LoginUnion];
 export type JWT = {
   sub: string;
 } & Login;
+
+/**
+ * 社交媒体登录
+ */
+export type TSocialLogin =
+  | 'github'
+  | 'google'
+  | 'facebook'
+  | 'bitbucket'
+  | 'qq'
+  | 'wechat';
+
+export type User = {
+  username?: string;
+  email?: string;
+  phone?: string;
+  password?: string;
+  userId: string;
+  // 用户登录类型
+  userType: TNormalLogin & TSocialLogin;
+};

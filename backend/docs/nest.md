@@ -1,5 +1,16 @@
 # Nest
 
+## 创建 Resource
+
+- [Generating a new resource](https://docs.nestjs.com/recipes/crud-generator#generating-a-new-resource)
+
+```bash
+nest g resource file server
+
+# 不生成 test 文件
+nest g resource file server --no-spec
+```
+
 ## 创建 Module
 
 [起步](https://juejin.cn/post/6885751452015263758)
