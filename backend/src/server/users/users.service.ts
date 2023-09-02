@@ -56,7 +56,8 @@ export class UsersService {
         HttpStatus.BAD_REQUEST,
       );
     } else {
-      return this.userModel.findByIdAndUpdate(_id, data);
+      // 返回最新信息
+      return this.userModel.findByIdAndUpdate(_id, data, { new: true });
     }
   }
 
@@ -74,15 +75,15 @@ export class UsersService {
 
     // 使用 username 和 password 登录
     if (data.username && password) {
-      query = { where: { username: data.username, password: password } };
+      query = { username: data.username, password: password };
     }
     // 使用 email 和 password 登录
     else if (data.email && password) {
-      query = { where: { username: data.email, password: password } };
+      query = { username: data.email, password: password };
     }
     // 使用 phone 和 password 登录
     else if (data.phone && password) {
-      query = { where: { username: data.phone, password: password } };
+      query = { username: data.phone, password: password };
     } else {
       // 必须输入用户名和密码/邮箱和密码/手机号和密码
       throw new HttpException(
@@ -93,6 +94,6 @@ export class UsersService {
 
     const user = await this.userModel.findOne(query);
 
-    return !!user;
+    return Boolean(user);
   }
 }

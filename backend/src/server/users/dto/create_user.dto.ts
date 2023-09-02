@@ -1,4 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { USER_TYPE } from 'src/config/constants';
 import { TNormalLogin, TSocialLogin } from 'types';
 
 export class CreateUserDto {
@@ -15,8 +16,8 @@ export class CreateUserDto {
   password?: string;
   @ApiProperty()
   // 用户唯一标识
-  userId: string;
-  @ApiProperty()
+  // userId: string;
+  @ApiProperty({ enum: USER_TYPE })
   // 用户登录类型
   userType: TNormalLogin & TSocialLogin;
 }

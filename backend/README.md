@@ -23,7 +23,7 @@ $ pnpm run start:prod
 ## Lint and format
 
 ```bash
-# Lint and autofix with eslint
+# Lint and auto fix with eslint
 pnpm run lint
 
 # Format with prettier
@@ -44,17 +44,32 @@ docker run -p 3002:3002 uni-md
 
 ## docs
 
-### swagger (openapi)
+### swagger (OpenAPI)
 
-`http:localhost:3002/swagger`
+- `Swagger` 文档地址: `http:localhost:3002/swagger`
+- `JSON` ([OpenAPI](https://www.openapis.org/) 格式) 文件地址: `http:localhost:3002/swagger-json`
+
+上述地址可根据实际情况酌情修改:
+
+- `http` 可替换为 `https`
+- `localhost` 可替换为实际的 `IP` 地址
+- `3002` 可替换为实际的**端口**
+- `swagger` 为 [main.ts](./src/main.ts) 中的配置
+
+  ```ts
+  SwaggerModule.setup('swagger', app, document);
+  ```
 
 ### Read More
 
 - [auth](/backend/docs/auth.md)
 - [cURL](/backend/docs/curl.md)
 - [Nest](/backend/docs/nest.md)
+- [PM2](/backend/docs/pm2.md)
+- [healthcheck](/backend/docs/healthcheck.md)
+- [MongoDB](/backend/docs/MongoDB.md)
 
-## comression
+## compression
 
 下载依赖:
 

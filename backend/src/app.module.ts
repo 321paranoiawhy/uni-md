@@ -34,7 +34,9 @@ import { HealthModule } from './server/health/health.module';
           ? 'env/.env.development'
           : 'env/.env.production',
       ],
-      isGlobal: true,
+      isGlobal: true, // https://docs.nestjs.com/techniques/configuration#use-module-globally
+      cache: true, // https://docs.nestjs.com/techniques/configuration#cache-environment-variables
+      expandVariables: true, // https://docs.nestjs.com/techniques/configuration#expandable-variables
     }),
 
     FileModule,

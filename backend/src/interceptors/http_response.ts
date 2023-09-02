@@ -18,7 +18,7 @@ export class HttpResponse implements NestInterceptor {
           code: HttpStatus.OK,
           message: 'Success',
           data,
-          url: context.switchToHttp().getRequest().url,
+          path: context.switchToHttp().getRequest().url,
         };
       }),
     );

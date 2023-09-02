@@ -6,6 +6,8 @@ import { AuthGuard } from './server/auth/auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import * as compression from 'compression';
 import { HttpResponse } from './interceptors/http_response';
+import { HttpExceptionFilter } from './exception_filters/http-exception.filter';
+import { MongooseExceptionFilter } from './exception_filters/mongoose-exception.filter';
 
 async function bootstrap() {
   // https://docs.nestjs.com/security/cors
@@ -13,11 +15,17 @@ async function bootstrap() {
   // Global prefix
   // https://docs.nestjs.com/faq/global-prefix
   app.setGlobalPrefix('/uni-md/api');
+  // 接口版本控制
+  // app.setGlobalPrefix('/uni-md/api/v0');
   // TODO 后续如何获取该全局前缀
-  // X await app.getUrl()
+  // 错误 await app.getUrl()
 
   // Logger 中间件
   app.use(new LoggerMiddleware().use);
+
+  // use a global-scoped exception filter
+  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new MongooseExceptionFilter());
 
   // 文件压缩
   // https://docs.nestjs.com/techniques/compression
