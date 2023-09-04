@@ -83,6 +83,5 @@ export class UsersController {
       console.log(error);
       return `User  (id: ${_id}) deleted failed, maybe the user does not exist`;
     }
-    // return this.usersService.deleteUserById(_id);
   }
 }

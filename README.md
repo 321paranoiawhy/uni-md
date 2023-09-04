@@ -21,7 +21,7 @@ Universal markdown rendered in web, support all markdown formats, such as [Commo
 
 ```bash
 pnpm install
-pnpn run dev
+pnpm run dev
 
 # 或者
 npx nuxi dev --dotenv .env.local
