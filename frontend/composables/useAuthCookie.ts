@@ -1,4 +1,6 @@
-import { CookieType } from "types/api";
+// import { CookieType } from "types/api";
+
+import { CookieType } from "~/types/api";
 
 export const useAuthCookie = (
   { authUsername, authUseId, authToken, authEmail } = {

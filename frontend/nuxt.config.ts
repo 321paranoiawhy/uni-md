@@ -48,7 +48,7 @@ export default defineNuxtConfig({
     },
   },
   // https://nuxt.com/docs/api/configuration/nuxt-config#devserver
-  devServer: { host: "0.0.0.0", port: +(process.env.PORT || 3001) },
+  devServer: { host: "127.0.0.1", port: +(process.env.PORT || 3001) },
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
   // https://nuxt.com/docs/guide/concepts/typescript
   typescript: { strict: true, typeCheck: true },

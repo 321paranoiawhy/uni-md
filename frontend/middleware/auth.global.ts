@@ -1,7 +1,8 @@
 // https://nuxt.com/docs/api/utils/define-nuxt-route-middleware#type
 // RouteLocationNormalized
 
-import { RouteLocationNormalized } from ".nuxt/vue-router";
+// import { RouteLocationNormalized } from ".nuxt/vue-router";
+import { RouteLocationNormalized } from "#vue-router";
 import { useAuthStore } from "../store/auth";
 
 // https://router.vuejs.org/api/interfaces/routelocationnormalized
